@@ -7,6 +7,9 @@ UPLOAD_FOLDER = 'uploads'
 HLS_FOLDER = 'hls'
 PREVIEW_NAME = 'preview.jpg'
 
+# Définir la base URL ici (à adapter selon votre déploiement)
+BASE_URL = os.environ.get('BASE_URL', 'http://localhost:5000')
+
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 os.makedirs(HLS_FOLDER, exist_ok=True)
 
@@ -79,10 +82,10 @@ def list_videos():
         if os.path.isdir(os.path.join(HLS_FOLDER, d)) and d.startswith('video') and d[5:].isdigit():
             num = int(d[5:])
             title = f"Video {num}"
-            hls_url = url_for('stream', video_id=d, filename='index.m3u8', _external=True)
+            hls_url = f"{BASE_URL}/hls/{d}/index.m3u8"
             preview_path = os.path.join(HLS_FOLDER, d, PREVIEW_NAME)
             if os.path.exists(preview_path):
-                preview_url = url_for('video_preview', video_id=d, _external=True)
+                preview_url = f"{BASE_URL}/hls/{d}/preview.jpg"
             else:
                 preview_url = None
             vtt_filenames = ['index.vtt.m3u8', 'index_vtt.m3u8']
@@ -95,7 +98,7 @@ def list_videos():
             has_vtt = vtt_found is not None
             if has_vtt:
                 hls_vtt = {
-                    'url': url_for('stream', video_id=d, filename=vtt_found, _external=True),
+                    'url': f"{BASE_URL}/hls/{d}/{vtt_found}",
                     'filename': vtt_found
                 }
             else:
