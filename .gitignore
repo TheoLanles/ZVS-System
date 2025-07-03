@@ -1,0 +1,48 @@
+# Node.js / Next.js
+frontend/node_modules/
+frontend/.next/
+frontend/.env
+frontend/.env.local
+frontend/.env.development.local
+frontend/.env.test.local
+frontend/.env.production.local
+frontend/package-lock.json
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+env/
+venv/
+ENV/
+.venv/
+pip-log.txt
+pip-delete-this-directory.txt
+
+# VSCode
+.vscode/
+
+# Mac/Linux/Windows system files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Icon?
+Desktop.ini
+
+# Logs
+*.log
+
+# Test coverage
+coverage/
+*.cover
+.hypothesis/
+.pytest_cache/
+
+# Media output (optionnel, si tu veux ignorer les fichiers générés)
+hls/
+uploads/
+
+# Autres
+*.swp
+*.swo
